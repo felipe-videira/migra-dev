@@ -1,0 +1,67 @@
+<!-- Diz para o navegador que esse documento é do tipo HTML -->
+<!DOCTYPE html>
+
+<!-- Tag raiz do documento, contém todas as outras tags e pode conter a indicação do idioma do documento -->
+<html lang="pt">
+
+<!-- 
+    Tag que contém os metadados (dados sobre os dados) do documento, 
+    exp.: titulo da pagina, valores globais, estilo (CSS) 
+-->
+<head>
+    <!-- Nome que aparecerá na aba do navegador, tag obrigatória! -->
+    <title>Título da página</title>
+
+    <!-- Palavras chaves para os mecanismos de busca  -->
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+
+    <!-- Relaciona folha de estilos (.css) com a pagina (.html) e permite utilizar as classes dela -->
+    <link rel="stylesheet" href="index.css" />
+
+    <!-- Relaciona script (.js) com a pagina (.html), pode aparecer aqui no <head> ou depois do <body> -->
+    <script src="index.js"></script>
+
+    <!-- outras opções (vamos falar sobre elas depois):
+        <base>
+        <noscript> 
+    -->
+</head>
+<!-- Tag que contém o corpo do site, ou seja aquilo que seu usuário vai ver -->
+<body>
+    <h1 class="titulo">Isso é um cabeçalho (ou título).</h1>
+    <p id="descricao">Isso é um parágrafo.</p>
+
+     <!-- aplica o estilo da classe .btn ao botao-->                   
+    <button class="btn">Botao com estilo</button>
+    
+    <!-- chama a funcao 'login' do script (index.js) ao ser clicado -->
+    <button onclick="login()">Botao com acão*</button>
+
+    <p><b>*clique com o botão direito no botão, selecione "Inspecionar" e acesse a aba "Console" no devtools.</b></p>
+
+    <!-- cria uma tabela -->
+    <table>
+        <!-- <tr> linhas da tabela -->
+        <tr>
+            <!-- <th> cabeçalho da tabela -->
+          <th>Nome</th>
+          <th>Sobrenome</th>
+          <th>Idade</th>
+        </tr>
+        <tr>
+            <!-- <td> cedulas da tabela -->
+          <td>Jill</td>
+          <td>Smith</td>
+          <td>50</td>
+        </tr>
+        <tr>
+          <td>Eve</td>
+          <td>Jackson</td>
+          <td>94</td>
+        </tr>
+    </table>
+
+</body>
+
+</html>
+

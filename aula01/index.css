@@ -1,0 +1,28 @@
+/* seletor de classes. começam com um ponto antes do nome */
+.titulo {
+    color: red;
+}
+
+.btn {
+    background-color: #34bed4;
+    height: 50px;
+    width: 150px;
+    border-radius: 5px;
+    border: none;
+}
+
+/* seletor de tags */
+th {
+    border: 1px solid black
+}
+
+td {
+    border: 1px solid black
+}
+
+
+/* seletor de id. comecam com uma hashtag antes do nome */
+
+#descricao {
+    color: blue;
+}
