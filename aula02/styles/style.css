@@ -113,11 +113,11 @@ footer {
         /* width style color */
 
     /* 
-        background: Altera o fundo (cor ou imagem) do elemento 
+        background: Altera o fundo (cor ou imagem) do elemento. Ele tem 4 principais variações:
     */
     background-color: #ffffff; /* cor do fundo, valor padrão: transparent, usa valores de cor*  */
-    background-image: url("img_tree.png");  /* imagem do fundo */
-    background-repeat: no-repeat;  /* se dever repetir ou não em caso da imagem não ocupar todo o espaço do elemento */
+    background-image: url("../images/img01.jpg");  /* imagem do fundo */
+    background-repeat: repeat;  /* se dever repetir ou não em caso da imagem não ocupar todo o espaço do elemento */
     background-position: right bottom;  /* posição de inicio ao preencher o elemento, nesse caso pelo canto direito (right) inferior (bottom) */
 
     /* mesma coisa */
@@ -125,8 +125,18 @@ footer {
                 /* color    image                     repeat    position */
 
     /*
-        font: Altera a fonte do texto do elemento
+        font: Altera a fonte do texto do elemento. Ela tem 5 principais variações e 2 propriedades que agem em conjunto:
     */
+    font-family: Arial, Helvetica, sans-serif; /* Nome da fonte usada no texto* */
+            /* fonte preferida, caso não tenha (no navegador), caso não tenha ela também */
+
+    font-variant: small-caps; /* Variação do texto, entre normal e small-caps (as minúsculas são versões menores da maiúsculas) */
+    font-style: normal; /* estilo da fonte, varia entre normal, italic e oblique */
+    font-weight: bold; /* muda o "peso" da fonte, ou sua grossura, serve para colocar uma fonte em negrito por exemplo, aceita valores de 100-900 ou lighter, normal, bold, bolder */
+    font-size: 11px; /* muda o tamanho da fonte, usando as unidades de medida* */
+
+    line-height: 14px; /* tamanho da linha, ou espacamento entre uma linha e outra, usa unidades de medida* */
+    color: black; /*cor do texto, usa valores de cor* */
 }
 
 
@@ -166,4 +176,15 @@ footer {
 
     Quando precisa encontrar o equivalente em CSS de uma cor da uma olhada aqui:
     https://www.w3schools.com/colors/colors_picker.asp
+*/
+
+/* *Fontes no CSS: Podem ser descritas pelo nome especifico da fonte ou pelas opções abaixo:
+        serif = qualquer fonte disponivel que seja serifada (com linhas nos finais das letras)
+        sans-serif = qualquer fonte disponivel que NÃO seja serifada.
+        monospace =  qualquer fonte disponivel que seja monospace (todas as letras tem a mesma largura, sem serifa)
+
+    Caso a fonte que você queira não seja suportada pelos navegadores então você pode 
+    importa-la usando um stylesheet proprio ou de tercerios (caso a fonte não seja de sua autoria), 
+    como esse do Google:
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
 */
