@@ -5,115 +5,128 @@
     <link rel="stylesheet" href="styles/style.css" />
 </head>
 <body>
-  <!--
-    Cabeçalho, vai do h1 ao h6, h1 sendo o maior. o "h" é de heading (cabeçalho)
-    Importante usar ele para títulos ao invés de um "<p> com font-size", pois torna o HTML mais semântico*.
-  -->
-  <h1>h1 - Recomendado para ser o titulo da página.</h1>
-  <h2>h2 - Recomendado para dividir "capítulos" ou algo semelhante.</h2>
-  <h3>h3 - Recomendado para subdivisões do texto, assim como todos abaixo</h3>
-  <h4>h4</h4>
-  <h5>h5</h5>
-  <h6>h6</h6>
-
-   <!--
-    Regra horizontal, cria uma divisória horizontal para o conteúdo, 
-    use para separar temas em seu conteúdo, não para "colocar uma linha".
-    <hr> horizontal rule
-   -->
-  <hr/>
-
-  <!--
-    Parágrafo, adiciona uma linha em branco antes e depois do texto.
-  -->
-  <p>Paragrafo</p>
-  <hr/>
-
-  <!--
-    Pode ser feita com as tags <i> ou <em>, porém o mais recomendado é utilizar <em>, 
-    pois não se trata de tornar o texto itálico <i>, mas de dar enfasê a uma secção do texto <em>. 
-    Em prol de deixar o HTML semântico, o <em> deve ser utilizado.
-  -->
-  <p><em>Enfasê</em></p>
-  <hr/>
-
-  <!--
-    Pode ser feita com as tags <b> ou <strong>, porém o mais recomendado é utilizar <strong>, 
-    pois não se trata de deixar o texto em negrito <b>, mas de dar destaque a uma secção do texto <strong>. 
-    Em prol de deixar o HTML semântico, o <strong> deve ser utilizado.
-  -->
-  <p><strong>Destaque</strong></p>
-
-  <hr/>
-
-  <!--
-    Âncora ou link, mas o "a" é de âncora. Cria uma "âncora" para outra pagina (do mesmo site ou não) ou para uma outra secção na mesma pagina
-  -->
-  <p><a href="https://www.w3schools.com">âncora para outro site</a></p>
-
-  <p><a href="https://www.w3schools.com" target="_blank">âncora para outro site em uma nova aba</a></p>
-
-  <p><a href="pages/other-page.html">âncora para outra página</a></p>
-
-  <p><a href="#tag-div">âncora para outra secção especifica</a></p>
-
-  <p><a href="#">âncora para o começo do site</a></p>
-  <hr/>
-  <!--
-    Lista desordenada 
-    <ul> unordered list
-  -->
-  <ul>
-    <!-- 
-      Item da lista 
-      <li> list item
+  <main>
+      
+    <!--
+      Cabeçalho, vai do h1 ao h6, h1 sendo o maior. o "h" é de heading (cabeçalho)
+      Importante usar ele para títulos ao invés de um "<p> com font-size", pois torna o HTML mais semântico*.
     -->
-    <li>lista</li>
-    <li>sem</li>
-    <li>ordem</li>
-  </ul>
+    <h1>h1 - Recomendado para ser o titulo da página.</h1>
+    <h2>h2 - Recomendado para dividir "capítulos" ou algo semelhante.</h2>
+    <h3>h3 - Recomendado para subdivisões do texto, assim como todos abaixo</h3>
+    <h4>h4</h4>
+    <h5>h5</h5>
+    <h6>h6</h6>
 
-  <hr/>
+    <!--
+      Regra horizontal, cria uma divisória horizontal para o conteúdo, 
+      use para separar temas em seu conteúdo, não para "colocar uma linha".
+      <hr> horizontal rule
+    -->
+    <hr/>
+
+    <!--
+      Parágrafo, adiciona uma linha em branco antes e depois do texto.
+    -->
+    <p>Paragrafo</p>
+    <hr/>
+
+    <!--
+      Pode ser feita com as tags <i> ou <em>, porém o mais recomendado é utilizar <em>, 
+      pois não se trata de tornar o texto itálico <i>, mas de dar enfasê a uma secção do texto <em>. 
+      Em prol de deixar o HTML semântico, o <em> deve ser utilizado.
+    -->
+    <p><em>Enfasê</em></p>
+    <hr/>
+
+    <!--
+      Pode ser feita com as tags <b> ou <strong>, porém o mais recomendado é utilizar <strong>, 
+      pois não se trata de deixar o texto em negrito <b>, mas de dar destaque a uma secção do texto <strong>. 
+      Em prol de deixar o HTML semântico, o <strong> deve ser utilizado.
+    -->
+    <p><strong>Destaque</strong></p>
+
+    <hr/>
+
+    <!--
+      Âncora ou link, mas o "a" é de âncora. Cria uma "âncora" para outra pagina (do mesmo site ou não) ou para uma outra secção na mesma pagina
+    -->
+    <p><a href="https://www.w3schools.com">âncora para outro site</a></p>
+
+    <p><a href="https://www.w3schools.com" target="_blank">âncora para outro site em uma nova aba</a></p>
+
+    <p><a href="pages/other-page.html">âncora para outra página</a></p>
+
+    <p><a href="#tag-div">âncora para outra secção especifica</a></p>
+
+    <p><a href="#">âncora para o começo do site</a></p>
+    <hr/>
+    <!--
+      Lista desordenada 
+      <ul> unordered list
+    -->
+    <ul>
+      <!-- 
+        Item da lista 
+        <li> list item
+      -->
+      <li>lista</li>
+      <li>sem</li>
+      <li>ordem</li>
+    </ul>
+
+    <hr/>
+    <!--
+      Lista ordenada
+      <ul> ordered list
+    -->
+    <ol>
+      <li>lista</li>
+      <li>com</li>
+      <li>ordem</li>
+    </ol>
+
+    <hr/>
+
+    <ol start="50">
+      <li>lista</li>
+      <li>com</li>
+      <li>ordem</li>
+      <li>que</li>
+      <li>começa</li>
+      <li>no 50</li>
+    </ol>
+
+    <hr/>
+    <!-- 
+      Mostra a imagem especificada no caminho do atributo src. Os outros atributos são opcionais, 
+      porém muito recomendados, pois o alt (alternativa) determina o texto que será mostrado caso o usuario não 
+      consiga ver a imagem, o width (largura) e o height (altura) determinam o tamanho da imagem antes que o navegador 
+      comece a carrega-la, fazendo com que ele ja libere o espaço necessário, assim seu layout não "quebra" com a ausência da imagem.
+    -->
+    <img src="images/img01.jpg" alt="Imagem existe e esse texto não aparece" width="328" height="246" />
+
+    <img src="images/img02.jpg" alt="Imagem não existe" width="500" height="600" />
+
+    <hr/>
+    <div class="divisao">
+      <h3 id="tag-div">Divisão</h3>	
+      <p>
+        Tag genérica para abrigar conteudo que não tem uma definição específica em tags HTML. Você vai usar ela bastante, mas consulte as opções antes de sair colocando div em tudo, por exemplo a tag do rodapé logo abaixo.
+      </p>
+    </div>
+
+    <hr/>
+
+    <div class="para-testar-css"></div>
+    <div class="para-testar-css"></div>
+
+  </main>
   <!--
-    Lista ordenada
-    <ul> ordered list
+    Funciona exatamente como uma <div> do ponto de vista do usuário, 
+    mas do ponto e vista do programador deixa claro do que se trata essa secção do HMTL.
   -->
-  <ol>
-    <li>lista</li>
-    <li>com</li>
-    <li>ordem</li>
-  </ol>
-
-  <hr/>
-
-  <ol start="50">
-    <li>lista</li>
-    <li>com</li>
-    <li>ordem</li>
-    <li>que</li>
-    <li>começa</li>
-    <li>no 50</li>
-  </ol>
-
-  <hr/>
-  <!-- 
-    Mostra a imagem especificada no caminho do atributo src. Os outros atributos são opcionais, 
-    porém muito recomendados, pois o alt (alternativa) determina o texto que será mostrado caso o usuario não 
-    consiga ver a imagem, o width (largura) e o height (altura) determinam o tamanho da imagem antes que o navegador 
-    comece a carrega-la, fazendo com que ele ja libere o espaço necessário, assim seu layout não "quebra" com a ausência da imagem.
-  -->
-  <img src="images/img01.jpg" alt="Imagem existe e esse texto não aparece" width="328" height="246" />
-
-  <img src="images/img02.jpg" alt="Imagem não existe" width="500" height="600" />
-
-  <hr/>
-  <div class="my-div">
-    <h3 id="tag-div">Divisão</h3>	
-    <p>
-      Tag genérica para abrigar conteudo que não tem uma definição específica em tags HTML. Você vai usar ela bastante, mas consulte as opções antes de sair colocando div em tudo.
-    </p>
-  </div>
-
+  <footer>©2020 Rodapé</footer>
 <script src="scripts/script.js"></script>
 </body>
 </html>

@@ -1,11 +1,169 @@
-html {
+body {
+    margin: 0;
+    padding: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.my-div {
-    border: 2px solid rgb(31, 122, 158);
+main {
+    padding: 10px;
+}
+
+footer {
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+}
+
+.divisao {
+    border: 2px solid black;
     width: 300px;
     height: 300px;
     padding: 10px;
     text-align: justify;
 }
+
+.para-testar-css {
+    /* 
+        display: Altera como um elemento é exibido (display) para o usuário. 
+        (comente e descomente as opções abaixo para ver o que elas fazem) 
+    */
+    /* 
+        Valor padrõo de elementos tipo div, p e ul. 
+        Coloca o elemento ocupando todo o espaço horizontal que ele consegue (bloco) 
+        e não permite dois elementos na mesma linha .
+    */
+    display: block;
+
+    /* 
+        Valor padrõo de elementos tipo strong, em e a. 
+        Permite dois elementos na mesma linha (inline), mas você não pode alterar 
+        sua altura (width) e largura (height).
+    */
+    /* display: inline; */
+
+    /* 
+        Combina block e inline, você consegue mudar a altura e largura e 
+        permite dois elementos na mesma linha.
+    */
+    /* display: inline-block; */
+
+    /* 
+       Não mostra o elemento. Muito bom quando você quer esconder e mostrar algo sobre certas condições, 
+       exemplo um submenu de lista que aparece ao passar o mouse em cima de um item do menu.
+    */
+    /* display: none; */
+
+    /* 
+        width: Altera a largura do elemento, recebe unidades de medida como valor*.
+        Existem duas variações: min-width e max-width, que criam um alcance minimo e maxixo para o valor do width
+    */
+    width: 50px;
+
+    /* 
+        height: Altera a altura do elemento, recebe unidades de medida como valor*.
+        Existem duas variações: min-height e max-height, que criam um alcance minimo e maxixo para o valor do height
+    */
+    height: 50px;
+
+
+    /* 
+        padding: Altera o espaçamento dentro das bordas do elemento, recebe unidades de medida como valor*.
+    */
+    /* Aplica um espaçamento de 10 pixels em todas as posiçôes*/
+    padding: 10px;   
+
+    /* mesma coisa */
+    padding-top: 10px;   /* espaçamento superior */
+    padding-bottom: 10px;  /* espaçamento inferior */
+    padding-left: 10px; /* espaçamento esquerdo */
+    padding-right: 10px; /* espaçamento direito */
+
+    /* mesma coisa */
+    padding: 10px 10px 10px 10px;
+           /* top right bottom left */
+
+    /* 
+        margin: Altera o espaçamento fora das bordas do elemento, ou seja o espaço entre ele e outros elementos, 
+        recebe unidades de medida como valor*.
+    */
+    /* Aplica um espaçamento de 10 pixels em todas as posiçôes*/
+    margin: 10px;   
+
+    /* mesma coisa */
+    margin-top: 10px;   /* espaçamento superior */
+    margin-bottom: 10px;  /* espaçamento inferior */
+    margin-left: 10px; /* espaçamento esquerdo */
+    margin-right: 10px; /* espaçamento direito */
+
+    /* mesma coisa */
+    margin: 10px 10px 10px 10px;
+           /* top right bottom left */
+
+    /* 
+        border: Adiciona uma borda ao elemento  
+    */
+    border-width: 1px;  /* largura da borda */
+    border-style: solid; /* Estilo da borda, valor padrão: solid, existem varios estilos, se quiser ver mais da uma olhada aqui: https://www.w3schools.com/cssref/pr_border-style.asp */
+    border-color: black;  /* Cor da borda, valor padrão: black, usa valores de cor* */
+
+    /* mesma coisa */
+    border: 1px solid black;
+        /* width style color */
+
+    /* 
+        background: Altera o fundo (cor ou imagem) do elemento 
+    */
+    background-color: #ffffff; /* cor do fundo, valor padrão: transparent, usa valores de cor*  */
+    background-image: url("img_tree.png");  /* imagem do fundo */
+    background-repeat: no-repeat;  /* se dever repetir ou não em caso da imagem não ocupar todo o espaço do elemento */
+    background-position: right bottom;  /* posição de inicio ao preencher o elemento, nesse caso pelo canto direito (right) inferior (bottom) */
+
+    /* mesma coisa */
+    background: #ffffff url("../images/img01.jpg") no-repeat right bottom;
+                /* color    image                     repeat    position */
+
+    /*
+        font: Altera a fonte do texto do elemento
+    */
+}
+
+
+/* *Existem varias unidades de medidas no CSS, porém essas são os principais:
+
+        px - pixels, valor absoluto de quantos pixels o elemento ira ocupar na tela do usuario.
+
+        em - unidade de medidada relativa ao pai (o que esta envolvendo o elemento em questão), por exemplo: 
+            body { font-size: 20px; } 
+            .minha-classe { font-size: 1em }  font-size = 20px (relativos ao pai, ou seja o body)
+            .outra-classe { font-size: 2em }  font-size = 40px (relativos ao pai, ou seja o body)
+
+        % - porcentagem, relativa ao pai, pode ser a pagina ou um elemento.
+
+        auto - escala automaticamente com o conteudo.
+
+    Se quiser ver mais tipos da uma olhada aqui: https://www.w3schools.com/cssref/css_units.asp
+*/
+
+/* *Existem varias formas de definir cor no CSS, porém essas são os principais:
+
+        rgb(255, 255, 255) - RGB, onde rgb(vermelho, verde, azul) com valores de 0 a 255 (maximo).
+        
+        rgba(255, 255, 255, 0.5) - Mesmo que o anterior, porém com a adição do alpha (opacidade) 
+        no ultimo parâmetro, aceita valores de 0 a 1.
+
+        #000000 - HEX (Hexadecimal), onde RR (vermelho), GG (verde), BB(azul) 
+        com valores de 00 a FF (o maior).
+
+        black - Cores predefinidas acessadas pelo nome em inglês, mais exemplos: red, blue, green, coral
+
+        currentcolor - Coloca a mesma cor que já foi definida em outra propriedade, por exemplo:  
+            .minha-div {
+                color: blue; 
+                border: 10px solid currentcolor; (blue também) 
+            }
+
+    Quando precisa encontrar o equivalente em CSS de uma cor da uma olhada aqui:
+    https://www.w3schools.com/colors/colors_picker.asp
+*/

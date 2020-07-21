@@ -1,3 +1,1 @@
-function goBack () {
-    history.back();
-}
+console.log("funcionou");
