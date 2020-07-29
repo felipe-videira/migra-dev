@@ -56,11 +56,10 @@ console.log(submitButton.querySelector('p'))
 
 
 /* 
-    Após encontrar o elemento desejado, você pode alterar suas propriedas como você faria em uma classe de JS. 
-    Por exemplo alterar o texto de um parágrafo:  
+    Após encontrar o elemento desejado, você pode alterar suas propriedas como você faria em uma classe de JS:  
 */
 const firstParagraph = document.querySelector('p');
-const text = "mudou via JS outra <strong>linha<strong>";
+const text = "mudou via <strong>JS<strong>";
 
 /* retorna apenas o texto */
 console.log(firstParagraph.innerText);
@@ -75,13 +74,20 @@ firstParagraph.innerText = text;
 /* muda o HTML inteiro */
 firstParagraph.innerHTML = text;
 
+/* acessa o estilo (CSS) do elemento e muda a cor (outras propriedades do estilo podem ser mudadas também) */
+firstParagraph.style.color="#ff0000";
+
+/* acessa o estilo (CSS) do elemento e muda o alinhamento do texto */
+firstParagraph.style.textAlign = "center";
+
+/* muda atributo 'id' para valor desejado (outros atributos em outras tags poderiam ser mudados da mesma forma: src, href e etc) */
+firstParagraph.id = "textoDinamico"
+
+
 /*
     Você poderia alterar e consultar varias coisas no elemento. De uma olhada aqui:
     https://developer.mozilla.org/pt-BR/docs/Web/API/Element
 */
-
-
-
 
 /* Cria um elemento 'img' dinamicamente. */
 const image = document.createElement('img');
@@ -89,12 +95,61 @@ const image = document.createElement('img');
 /* Altera o atributo 'src' para o caminho da imagem desejada, relativo ao caminho do arquivo 'index.html' */
 image.src = 'images/img01.jpg';
 
-image.width = '250px';
-image.height = '250px';
+image.width = '250';
+image.height = '250';
+image.style.margin = "20px"
 
 /* Adiciona o novo elemento como filho do 'body' */
 document.documentElement.appendChild(image);
         /* body */      /* 'acrescenta', ou seja coloca no final, após o ultimo elemento presente. */
+
+
+const divText = document.createElement('p');
+divText.innerText = "Texto adicionado via js";
+
+/* Adiciona o novo elemento como filho da div com o id = nomeDoId */
+document.querySelector('#nomeDoId').appendChild(divText);
+
+
+
+function onProductClick () {
+    const [name, qtd] =  Array.prototype.slice.call(this.querySelectorAll('td'));
+
+    document.forms['productForm']['fname'].value = name.innerText;
+    document.forms['productForm']['fqtd'].value = qtd.innerText;
+    document.forms['productForm']['fsubmit'].innerText = "Editar";
+}
+
+function createProduct (evt) {
+    evt.preventDefault();
+
+    const productName = document.forms['productForm']['fname'];
+    const productQtd = document.forms['productForm']['fqtd'];
+
+    const productTableBody = document
+        .querySelector('#productTable')
+        .querySelector('tbody');
+
+    const newTr = document.createElement('tr');
+
+    const nameTd = document.createElement('td');
+    nameTd.innerText = productName.value;
+    
+    const qtdTd = document.createElement('td');
+    qtdTd.innerText = productQtd.value;
+
+    newTr.appendChild(nameTd);
+    newTr.appendChild(qtdTd);
+    
+    newTr.className = "product-table__item";
+
+    newTr.id = productTableBody.childElementCount +1;
+
+    newTr.addEventListener('click', onProductClick);
+
+    productTableBody.appendChild(newTr);
+}
+
 
 /* 
     Como usamos muito esses metodos é interessante abstrair eles (reduzir a complexidade pegando só a parte importante) 
@@ -108,8 +163,17 @@ function $$ (selector, el = null, returnNodeList = false) {
     const nodeList = (el || document).querySelectorAll(selector);
 
     return returnNodeList ? nodeList : Array.prototype.slice.call(nodeList);
+                                        /*  usado normalmente para 'cortar' um array, nesse contexto esta sendo usado 
+                                            para converter uma variavel 'estilo array' (geralmente chamada de array-like)
+                                            em um array.
+                                        */
 }
 
+/*
+    Na linha abaixo a classe 'Element', disponibilizada pelo navegador, esta tendo o seu 'prototype' (protótipo) 
+    acessado para acrescentar um novo metodo a ela, o protótipo seria a especificação original da classe, 
+    em que nesse momento esta sendo modificada para todos que a usem na janela aberta*
+*/
 Element.prototype.$ = function (selector) {
     return $(selector, this);
 };
@@ -117,3 +181,8 @@ Element.prototype.$ = function (selector) {
 Element.prototype.$$ = function (selector, returnNodeList = false) {
     return $$(selector, this, returnNodeList);
 };
+
+/* 
+    *Todas as variaveis e modificações em 'prototype' são mantidas no estado do navegador enquanto a janela (aba) do navegador 
+    estiver aberta, apos fechada tudo é pertido e retorna ao estado original.
+*/
