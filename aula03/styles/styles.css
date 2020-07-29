@@ -1,0 +1,11 @@
+.product-form {
+    margin: 25px;
+}
+
+.product-table, .product-table td, .product-table th {
+    border: 1px solid;
+}
+
+.product-table__item {
+    cursor: pointer;
+}

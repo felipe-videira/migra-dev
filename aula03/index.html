@@ -2,9 +2,53 @@
 <html lang="pt">
 <head>
     <title>Pontos principais JS</title>
+    <link rel="stylesheet" href="./styles/styles.css" />
 </head>
 <body>
+    <div id="nomeDoId"></div>
 
-<script src="./scripts/main.js"></script>
+    <p>paragrafo</p>    
+
+    <a class=".nome-da-classe" href="https://developer.mozilla.org/">link</a>
+
+    <button type="button"><p>Botão com paragrafo</p></button>
+    <button type="button" class="nome-da-classe">Botão com classe</button>
+    <button type="submit">
+        <p>Botão submit</p>
+    </button>
+
+    <a href="https://developer.mozilla.org/" target="_blank">link que abre em outra aba</a>
+
+    <form 
+        name="productForm" 
+        class="product-form"
+        onsubmit="createProduct(event)"
+        action="#"
+        method="POST"
+    >
+        <label for="fname">Nome:</label>
+        <input name="fname" type="text" required />
+
+        <label for="fqtd">Quantidade:</label>
+        <input name="fqtd" type="number" min="1" max="10" required />
+
+        <button type="submit" name="fsubmit">Criar</button>
+    </form>
+
+    <table id="productTable" class="product-table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Quantidade</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+<!-- 
+    Sempre que possivel coloque a tag script no final do body, 
+    pois dessa forma seu usario não precisa esperar seu JS carregar para ver algo na tela,
+    e previne contra o JS tentar acessar um elemento que ainda não foi carregado.
+-->
+<script src="scripts/main.js"></script>
 </body>
 </html>
