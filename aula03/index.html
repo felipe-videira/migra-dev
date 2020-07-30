@@ -19,31 +19,48 @@
 
     <a href="https://developer.mozilla.org/" target="_blank">link que abre em outra aba</a>
 
+    <hr />
+    <!--
+        Tag para descrever o comportamento de um formulario com os atributos:
+        - name = Nome do formulario que podera ser usado para acessa-lo pelo JS
+        - onsubmit = Captura o evento (variável event abaixo) de submit (envio) e pode executar uma função.
+        Geralmente usado para validações ou capturar os valores do formulario para realizar 
+        operações no front (ao inves de manda-las para o servidor).
+        - action = Ação a ser executada apos o submit, recebe como valor um caminho para redirecionar o navegador, 
+        geralmente para mandar os valores do formulario para o servidor (back end), mas caso não for ser usado,
+        uma alternativa é adicionar o '#' indicando uma âncora para a mesma pagina.
+    -->
     <form 
-        name="productForm" 
-        class="product-form"
-        onsubmit="createProduct(event)"
+        name="produtoForm" 
+        onsubmit="criarProduto(event)"
         action="#"
-        method="POST"
     >
-        <label for="fname">Nome:</label>
-        <input name="fname" type="text" required />
+        <!--
+            Tag para indicar nome do campo. Usado pelo navegador para 
+            promover acessibilidade a usuários com deficiencia visual. O nome descrito na label sera dito em voz alta.
+        -->
+        <label for="nome">Nome:</label>
 
-        <label for="fqtd">Quantidade:</label>
-        <input name="fqtd" type="number" min="1" max="10" required />
+        <!--
+            Tag que cria o campo do formulario, recebe como atributo name (nome), usado para ser acessado pelo JS, e type, 
+            que determina o tipo do campo, que definirá os possíveis valores aceitos 
+            e sua aparência padrão (pode ser alterada via CSS). De uma olhada nos tipos aqui: 
+            https://www.w3schools.com/html/html_form_input_types.asp
+        -->
+        <input name="nome" type="text" required />
+                                        <!-- 
+                                            Atributo de validação, usado para aplicar validações padrões no campo,
+                                            neste caso indicando que ele é obrigatório (required). De uma olhada em 
+                                            outras opções aqui: https://www.w3schools.com/html/html_form_attributes.asp
+                                        -->
 
-        <button type="submit" name="fsubmit">Criar</button>
+        <label for="qtd">Quantidade:</label>
+        <input name="qtd" type="number" min="1" max="10" required />
+
+        <input type="submit" value="Criar" />
     </form>
 
-    <table id="productTable" class="product-table">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Quantidade</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+
 <!-- 
     Sempre que possivel coloque a tag script no final do body, 
     pois dessa forma seu usario não precisa esperar seu JS carregar para ver algo na tela,

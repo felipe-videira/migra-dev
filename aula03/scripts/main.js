@@ -1,7 +1,7 @@
 
 /*
     DOM (Document Object Model) - É a representação da hierarquia dos
-    elementos na página (tags) em forma de objetos de Javascript, para que possamos consular e 
+    elementos na página (tags) em forma de objetos de Javascript, para que possamos consultar e 
     alterar seus valores e atributos, e criar novos elementos dinamicamente.
 
     document - Objeto que contém propriedades e funções a respeito do documento (página HTML)
@@ -100,8 +100,8 @@ image.height = '250';
 image.style.margin = "20px"
 
 /* Adiciona o novo elemento como filho do 'body' */
-document.documentElement.appendChild(image);
-        /* body */      /* 'acrescenta', ou seja coloca no final, após o ultimo elemento presente. */
+document.querySelector('body').appendChild(image);
+                  /* 'acrescenta', ou seja coloca no final, após o ultimo elemento presente. */
 
 
 const divText = document.createElement('p');
@@ -111,78 +111,22 @@ divText.innerText = "Texto adicionado via js";
 document.querySelector('#nomeDoId').appendChild(divText);
 
 
-
-function onProductClick () {
-    const [name, qtd] =  Array.prototype.slice.call(this.querySelectorAll('td'));
-
-    document.forms['productForm']['fname'].value = name.innerText;
-    document.forms['productForm']['fqtd'].value = qtd.innerText;
-    document.forms['productForm']['fsubmit'].innerText = "Editar";
-}
-
-function createProduct (evt) {
+function criarProduto (evt) {
+    /* 
+        acessa o objeto do evento passado como parâmetro pelo onclick e executa a função 'preventDefault', 
+        que previne que aconteça o comportamento padrão do evento, neste caso um evento de 'submit' redirecionaria o 
+        usuario para a pagina especificada no atributo 'action'.
+    */
     evt.preventDefault();
 
-    const productName = document.forms['productForm']['fname'];
-    const productQtd = document.forms['productForm']['fqtd'];
+    /* 
+        Acessa o objeto 'forms' fornecido pelo navegador contendo os dados dos formularios na pagina. 
+        Usando o nome do formulario e de um campo dentro dele, você pode acessar suas propriedades, como 
+        o valor digitado nele (value), como acontece abaixo.
+    */
+    const nome = document.forms['produtoForm']['nome'].value;
+    const qtd = document.forms['produtoForm']['qtd'].value;
 
-    const productTableBody = document
-        .querySelector('#productTable')
-        .querySelector('tbody');
-
-    const newTr = document.createElement('tr');
-
-    const nameTd = document.createElement('td');
-    nameTd.innerText = productName.value;
-    
-    const qtdTd = document.createElement('td');
-    qtdTd.innerText = productQtd.value;
-
-    newTr.appendChild(nameTd);
-    newTr.appendChild(qtdTd);
-    
-    newTr.className = "product-table__item";
-
-    newTr.id = productTableBody.childElementCount +1;
-
-    newTr.addEventListener('click', onProductClick);
-
-    productTableBody.appendChild(newTr);
+    console.log(nome);
+    console.log(qtd);
 }
-
-
-/* 
-    Como usamos muito esses metodos é interessante abstrair eles (reduzir a complexidade pegando só a parte importante) 
-    para uma função nossa. Por convenção essas funções são nomeadas da seguinte forma:
-*/
-function $ (selector, el = null) {
-    return (el || document).querySelector(selector);
-}
-
-function $$ (selector, el = null, returnNodeList = false) {
-    const nodeList = (el || document).querySelectorAll(selector);
-
-    return returnNodeList ? nodeList : Array.prototype.slice.call(nodeList);
-                                        /*  usado normalmente para 'cortar' um array, nesse contexto esta sendo usado 
-                                            para converter uma variavel 'estilo array' (geralmente chamada de array-like)
-                                            em um array.
-                                        */
-}
-
-/*
-    Na linha abaixo a classe 'Element', disponibilizada pelo navegador, esta tendo o seu 'prototype' (protótipo) 
-    acessado para acrescentar um novo metodo a ela, o protótipo seria a especificação original da classe, 
-    em que nesse momento esta sendo modificada para todos que a usem na janela aberta*
-*/
-Element.prototype.$ = function (selector) {
-    return $(selector, this);
-};
-
-Element.prototype.$$ = function (selector, returnNodeList = false) {
-    return $$(selector, this, returnNodeList);
-};
-
-/* 
-    *Todas as variaveis e modificações em 'prototype' são mantidas no estado do navegador enquanto a janela (aba) do navegador 
-    estiver aberta, apos fechada tudo é pertido e retorna ao estado original.
-*/
