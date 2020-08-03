@@ -1,8 +1,24 @@
 .form {
+    /* 
+        altera a fonte do elemento com a classe form e seus filhos que não tenham fonte especificada, 
+        neste caso, todos os elementos do formulário (input, select, textarea)
+    */
     font-family: Arial, Helvetica, sans-serif;
     padding: 15px;
 }
 
+
+/* 
+    altera o estilo de multiplos elementos que são filhos de um elemento com a classe form:
+
+    usando o espaço entre o nome da classe e o nome do elemento para declarar hierarquia *:
+        .form input = selecionando todos os inputs filhos de um elemento com a classe form
+
+    usando virgula para aplicar o mesmo estilo a multiplos seletores:
+        .form input, 
+        .form fieldset,
+        ...
+*/
 .form input, 
 .form fieldset,
 .form textarea, 
@@ -13,24 +29,31 @@
     border: 1px solid #bcbcbc;
 }
 
+/*
+    selecionado todos os inputs do tipo radio e checkbox que são filhos de um elemento com a classe form
+    
+    Podemos selecionar um elemento condicionalmente baseado no valor de um de seus atributos:
+        [nome-do-atributo=valor]
+    ou multiplos atributos:
+        input[type="radio"][checked]
+*/
 .form input[type="radio"], 
 .form input[type="checkbox"] {
     display: inline-block;
     margin-left: 14px;
 }
 
-.form input[type="color"] {
-    display: inline-block;
-}
-
+/* seleciona todos os elemento com a classe form-acoes que são filhos de um elemento com a classe form  */
 .form .form-acoes {
     margin-top: 36px;
 }
 
+/* seleciona todos os inputs que são filhos de um elemento com a classe form-acoes que é filha de um elemento com a classe form  */
 .form .form-acoes input {
     display: inline-block;
 }
 
+/* seleciona todos os elemento com a classe form-img que são filhos de um elemento com a classe form  */
 .form .form-img {
     margin-right: 14px;
     height: 150px;
@@ -40,4 +63,20 @@
 }
 
 
+/*
+    * Importante notar que a hierarquia não precisa ser exata, por exemplo:
 
+        .form .form-img {
+            //
+        }
+
+    vai funcionar mesmo o .form-img sendo filho direto da div#pFotos, pois mesmo assim ele ainda é filho de .form, mas
+    caso você queira que um estilo se aplique a uma hierarquia mais especifica:
+        
+        .form .form-acoes input  {
+            //
+        }
+
+    também irá funcionar e sobrescrever qualquer estilo aplicado em uma hierarquia acima, como foi feito nos estilos acima, 
+    em que os inputs de ".form" estão com "display: block" e os de ".form .form-acoes" estão com "display: inline-block"
+*/

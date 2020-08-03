@@ -3,7 +3,6 @@
     <head>
         <title>Formulários</title>
         <link rel="stylesheet" href="styles/style.css" />
-        <meta charset="utf-8"/>
     </head>
     <body>
         <!-- 
@@ -105,12 +104,15 @@
             </fieldset> 
 
             <!-- 
-                
+                campo do tipo data (type="date"), mostra data no formato configurado no navegador do usuário.
             -->
             <label for="pData">Disponivel até</label>
             <input type="date" id="pData" name="pData" />
 
-
+            <!--
+                campo de seleção (select), cria um lista suspensa de opcões (<option value="eletronicos">Eletronicos</option>)
+                onde o atributo "value" sera o valor do campo apos a seleção e o texto entre as tags "option" será o que o usuário ira ver.
+            -->
             <label for="pTipo">Tipo</label>
             <select id="pTipo" name="pTipo">
                 <option value="eletronicos">Eletronicos</option>
@@ -119,9 +121,17 @@
                 <option value="utenDeCozinha">Utensílios de Cozinha</option>
             </select>
 
-
             <div class="form-acoes">
+                <!--
+                    campo de envio (type="submit"), cria um botão que
+                    executa o evento de envio do formulario (submit) ao ser clicado
+                -->
                 <input type="submit" value="Salvar" />
+
+                <!--
+                    campo de limpar (type="reset"), cria um botão que apaga todos os valores 
+                    no formulario ao ser clicado
+                -->
                 <input type="reset" value="Limpar" />
             </div>
         </form> 
