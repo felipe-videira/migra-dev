@@ -23,22 +23,32 @@ function salvarProduto (event) {
 
     /* 
         converte a lista de inputs em um array e filtra seus resultados pela 
-        propriedade checked, se checked === true entra no novo array
+        propriedade checked, se checked === true então seu valor entra no novo array
         
-        .filter() aceita uma função como parametro que realiza sua logica se um determinado item 
-        deveria entrar no novo array e retorna true ou false, ele executara a função que você passar para 
-        cada item do array e pelo retorno true ou false ira determinar o novo array, então .filter(funcao) 
-        é mais ou menos igual a:
-        
-        const novoArray;
-        for (let i = 0, len = seuArray.length; i < len; i++) {
-            if (suaFuncao(seuArray[i], i)) {  <- voce pode acessar o indice no segundo parametro se precisar
-                novoArray.push(seuArray[i]);
-            }
-        }
-        return novoArray;
+        .reduce() = metodo imbutido de array utilizado para reduzir o array a outro valor, 
+        por exemplo:
+
+        soma = [2,2].reduce(function (total, valor) { 
+            return total + valor;
+        }, 0); 
+
+        soma === 4
+
+        array.reduce(function (totalAtual, valorAtual) {
+            const novoValorTotal = totalAtual + valorAtual
+            return novoValorTotal
+        }, valorInicialDoTotal)
+
+        O valor inicial pode ser qualquer tipo de variavel, sendo assim tmb podemos 
+        usa-lo para criar um novo array baseado em certas condições como abaixo:
     */
-    const pagamentosSelecionados = converterParaArray(document.forms['formProduto']['pPag']).filter(function (input) { return input.checked; });
+    const pagamentosSelecionados = converterParaArray(document.forms['formProduto']['pPag'])
+        .reduce(function (novoArr, input) { 
+            if (input.checked) {
+                novoArr.push(input.value);
+            }
+            return novoArr; /* <- o total acumulado sempre deve ser retornado no final */
+        }, []); /* <- valor inicial com array */
 
 
     console.log(document.forms['formProduto']['pNome'].value);
@@ -187,22 +197,37 @@ function onFotoSelecionada (event) {
     */
     const files = event.target.files;
 
-    if (files.length === 0) return;
-
+    /*
+        guarda a div#pFotos para mais tarde
+    */
     if (!fotosDiv) {
         fotosDiv = document.querySelector('#pFotos');
     } else {
+        /*
+           remove as imagens antigas e suas URLs
+        */
         const imgsAntigas = fotosDiv.querySelectorAll('img');
 
         for (let i = 0, len = imgsAntigas.length; i < len; i++) {
+            window.URL.revokeObjectURL(imgsAntigas[i].src);
             imgsAntigas[i].remove();
         }
     }  
 
+    /*
+        percorre a lista de imagens guardando length em uma variavel (len)
+        para não precisar acessar a cada iteração melhorando a perfomance
+    */
     for (let i = 0, len = files.length; i < len; i++) {
         const img = document.createElement('img');
 
         img.className = "form-img"
+
+        /*
+            window.URL.createObjectURL() = cria uma URL para que o navegador 
+            acesse a imagem na maquina do usuario, existe outras maneiras de mostrar imagens 
+            carregas em JS, mas esse é o mais performático e simples.
+        */
         img.src = window.URL.createObjectURL(files[i]);
 
         fotosDiv.appendChild(img);
