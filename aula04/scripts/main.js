@@ -5,37 +5,46 @@ let medOutroInput;
 
 addMedidaOnChanges();
 
+function salvarProduto (event) {
+    event.preventDefault();
 
-function salvarProduto (evento) {
-    
+    if (!validarForm()) return;
+
+    const pagamentosSelecionados = Array.prototype.slice.apply(document.forms['formProduto']['pPag'])
+        .reduce((total, item) => {
+            if (item.checked) {
+                total.push(item);
+            }
+            return total;
+        }, []);
+
+    console.log(document.forms['formProduto']['pNome'].value);
+    console.log(document.forms['formProduto']['pDescricao'].value);
+    console.log(document.forms['formProduto']['pQtd'].value);
+    console.log(document.forms['formProduto']['pMed'].value);
+    console.log(pagamentosSelecionados);
+    console.log(document.forms['formProduto']['pFoto'].files);
+    console.log(document.forms['formProduto']['pData'].value);
+    console.log(document.forms['formProduto']['pTipo'].value);
 }
 
-function addCor () {
-    if (!coresDiv) {
-        coresDiv = document.querySelector('#pCores');
-    }   
-    coresDiv.appendChild(criarInputCor());
+function validarForm () {
+    const descricao = document.forms['formProduto']['pDescricao'].value;
+    const descricaoLimpa = descricao.trim().replace(/  /g, "");
+
+    if (descricaoLimpa.length === 0) {
+        return false;
+    }
+
+    return true;
 }
 
-function criarInputCor () {
-    const container = document.createElement('div');
-    const input = document.createElement('input');
-    const botaoRemover = document.createElement('button');
+function addMedidaOnChanges () {
+    const medOpcoes = document.forms.formProduto.pMed;
 
-    input.type = "color";
-    coresInputQtd++;
-    input.id = input.name = "pCor" + coresInputQtd;
-
-    botaoRemover.type = "button";
-    botaoRemover.className = "form-botao-remover";
-    botaoRemover.addEventListener('click', function () {
-        container.remove();
-    })  
-
-    container.appendChild(input);
-    container.appendChild(botaoRemover);
-
-    return container;
+    for (let i = 0, len = medOpcoes.length; i < len; i++) {
+        medOpcoes[i].addEventListener('change', onChangeMedida);
+    }
 }
 
 function onChangeMedida (event) {
@@ -52,14 +61,6 @@ function onChangeMedida (event) {
     } else if (medOutroInput) {
         medOutroInput.style.display = "none";
         medOutroInput.required = false;
-    }
-}
-
-function addMedidaOnChanges () {
-    const medOpcoes = document.forms.formProduto.pMed;
-
-    for (let i = 0, len = medOpcoes.length; i < len; i++) {
-        medOpcoes[i].addEventListener('change', onChangeMedida);
     }
 }
 

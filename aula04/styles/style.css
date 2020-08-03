@@ -1,11 +1,16 @@
 .form {
+    font-family: Arial, Helvetica, sans-serif;
     padding: 15px;
 }
 
 .form input, 
-.form fieldset {
+.form fieldset,
+.form textarea, 
+.form select {
     display: block;
     margin-bottom: 21px;
+    border-radius: 5px;
+    border: 1px solid #bcbcbc;
 }
 
 .form input[type="radio"], 
@@ -26,20 +31,12 @@
     display: inline-block;
 }
 
-.form .form-botao-remover {
-    background: transparent;
-    border: none;
-    margin: 0 5px;
-    font-size: 12px;
-}
-
-.form .form-botao-remover::before {
-    content: 'x';
-    color: red;
-}
-
 .form .form-img {
     margin-right: 14px;
+    height: 150px;
+    width: auto;
+    border: 2px solid #bcbcbc;
+    border-radius: 5px;
 }
 
 
