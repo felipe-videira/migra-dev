@@ -1,0 +1,46 @@
+.form {
+    padding: 15px;
+}
+
+.form input, 
+.form fieldset {
+    display: block;
+    margin-bottom: 21px;
+}
+
+.form input[type="radio"], 
+.form input[type="checkbox"] {
+    display: inline-block;
+    margin-left: 14px;
+}
+
+.form input[type="color"] {
+    display: inline-block;
+}
+
+.form .form-acoes {
+    margin-top: 36px;
+}
+
+.form .form-acoes input {
+    display: inline-block;
+}
+
+.form .form-botao-remover {
+    background: transparent;
+    border: none;
+    margin: 0 5px;
+    font-size: 12px;
+}
+
+.form .form-botao-remover::before {
+    content: 'x';
+    color: red;
+}
+
+.form .form-img {
+    margin-right: 14px;
+}
+
+
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <title>Formulários</title>
+        <link rel="stylesheet" href="styles/style.css" />
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+        <form 
+            name="formProduto" 
+            action="#" 
+            class="form"
+            onsubmit="salvarProduto(event)"
+        >
+            <label for="pNome">Nome:</label>
+            <input type="text" id="pNome" name="pNome" required />
+
+            <label for="pNome">Quatidade:</label>
+            <input type="number" id="pQtd" name="pQtd" min="0" max="100" required />
+
+            <p>Medido em:</p>
+            <input type="radio" id="pMed" name="pMed" value="unidade" checked />
+            <label for="male">Unidades</label>
+            <input type="radio" id="pMed" name="pMed" value="pacote">
+            <label for="female">Pacotes</label>
+            <input type="radio" id="pMed" name="pMed" value="outro">
+            <label for="other">Outro</label>
+            <div id="pMedidaOutro">
+            </div>
+
+            <p>Aceita pagamento em:</p>
+            <input type="checkbox" id="pPag" name="pPag" value="dinheiro" checked />
+            <label for="pPag">Dinheiro</label>
+            <input type="checkbox" id="pPag" name="pPag" value="cartao" checked />
+            <label for="pPag">Cartão Débito/Crédito</label>
+            <input type="checkbox" id="pPag" name="pPag" value="cheque" />
+            <label for="pPag">Cheque</label>
+
+            <fieldset>
+                <legend>Cores disponiveis</legend>
+                <div id="pCores">
+                    <input type="color" id="pcor1" name="pcor1" />
+                </div>
+                <button type="button" onclick="addCor()">Adicionar cor</button>
+            </fieldset>    
+
+            <label for="pData">Disponivel até:</label>
+            <input type="date" id="pData" name="pData" />
+
+            <fieldset>
+                <legend>Fotos</legend>
+                <input 
+                    type="file" 
+                    id="pFoto" 
+                    name="pFoto" 
+                    multiple 
+                    onchange="onFotoSelecionada(event)"
+                />
+                <div id="pFotos"></div>
+            </fieldset> 
+
+            <div class="form-acoes">
+                <input type="submit" value="Salvar" />
+                <input type="reset" value="Limpar" />
+            </div>
+        </form> 
+
+        <script src="scripts/main.js"></script>
+    </body>
+</html>
