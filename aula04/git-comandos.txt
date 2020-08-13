@@ -1,0 +1,46 @@
+- Adicionar arquivos mudados ao commit
+git add <arquivo ou pasta>
+
+- O "." adiciona todos os arquivos da pasta ou diretorio
+git add .
+
+- Adiciona apenas o arquivo
+git add index.html
+
+- Adiciona a pasta inteira
+git add styles
+
+- "Commitar" as mudanças, sempre deve ter uma mensagem (-m)
+git commit -m "mensagem"
+
+- Retorna o estado atual do repositorio
+git status
+
+- Trocar de branch
+git checkout <nome da branch>
+
+- Criar branch nova e trocar para ela 
+git checkout -b <nome da branch>
+
+- Misturar branches (execute estando na branch alvo)
+git merge <nome da branch>
+
+- Atualizar repositorio na nuvem com as mudanças 
+git push 
+
+- Atualizar repositorio local com as mudanças
+git pull
+
+- Clona repositorio para sua maquina
+git clone <url>
+
+- Transforma pasta em um repositorio
+git init
+
+- Adiciona a URL de origem do repositorio, No Github por exemplo
+git remote add origin <url>
+
+- "Commita" sua branch local para o repositorio 
+git push -u origin master
+ou
+git push --set-upstream origin master
