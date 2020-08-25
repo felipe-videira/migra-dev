@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    .container {
+      /* 
+                display: flex = cria um container flex. A ideia por traz do 'flex' e permitir ao container
+                organizar seus itens e alterar sua altura e largura para melhor acomoda-los na tela, geralmente para 
+                lidar com diferentes tipos de tela: desktop, celular, tablet e etc, mas também ajuda a organizar o 
+                layout de forma mais pratica e rapida, elimando a nescessidade de usar a tag table para organizar o conteudo 
+                ou outras estratégias.
+            */
+      display: flex;
+
+      /* 
+                alinhamento horizontal dos itens, 
+                principais valores: flex-start, flex-end, center, space-between, space-around e space-evenly 
+            */
+      justify-content: space-around;
+
+      /* 
+                alinhamento vertical dos itens, 
+                principais valores: flex-start, flex-end, center, strech e baseline
+            */
+      align-items: center;
+
+      /* 
+                alinhamento vertica das linhas no container, 
+                principais valores:  flex-start, flex-end, center, space-between, space-around e space-evenly 
+            */
+      align-content: stretch;
+
+      /*
+                flex-start = começo
+                flex-end = final
+                center = meio
+                strech = se expande para cobrir o espaço disponivel
+                baseline = alinha os itens na mesma linha de base
+                space-between = alinha os itens para que haja espaço entre eles
+                space-around = alinha os itens para que haja espaço entre eles e as bordas do container
+                space-evenly = alinha os itens para que haja espaços iguais entre eles e as bordas do container 
+            */
+
+      /*
+                define se os item devem tentar caber em uma linha ou não e como,
+                principais valores: 
+                    nowrap = sem quebra de linha 
+                    wrap = quebra a linha caso nescessario
+                    wrap-reverse = quebra a linha em ordem reversa
+            */
+      flex-wrap: wrap;
+
+      /*
+                define em que direção os itens devem ser alinhar,
+                principais valores:
+                    row = linha (esquerda para direita)
+                    row-reverse = linha reversa (direita para esquerda)
+                    column = coluna (cima para baixo)
+                    column-reverse = coluna reversa (baixo para cima)
+
+            */
+      flex-direction: row;
+
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .container div {
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      color: #fff;
+      font-size: 21px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .div1 {
+      /*
+                controla a ordem que um item dentro de um flex container deve aparecer, 
+                independente de sua posição no html
+            */
+      order: 1;
+      /*
+                define a proporção que o item vai ocupar no container, relativo ao outros itens
+                relativo ao valor dos demais, por exemplo: 
+                   se um item for flex: 1 ele vai tentar* ocupar todo o espaço restante no container
+                   se um item for flex: 2 e os demais flex: 1 ele vai tentar ocupar todo o espaço restante no container 2x mais que os outros
+                   se um item for flex: 0.7 e o outro flex: 0.3, ele tentara ocupar 70% do container
+
+                * o "tentar" é por que tudo depende do tamanho da tela, as vezes pode não ter espaço para tal, mas ele vai tentar.
+            */
+      flex: 1;
+
+      /*
+                sobrescreve o comportamento descrito em align-items para esse item em especifico.
+            */
+      align-self: flex-end;
+
+      background-color: rgb(177, 62, 62);
+    }
+
+    .div2 {
+      order: 3;
+      background-color: rgb(101, 185, 101);
+    }
+
+    .div3 {
+      order: 2;
+      background-color: rgb(76, 76, 238);
+    }
+
+    /*
+            media query = uma especie de 'if' para o CSS que se aplica exclusivamente para as 
+            propriedades do dispositivo em que o estilo esta sendo executado. Com ele você consegue definir
+            estilos especificos para desktop, celular, impressão da sua pagina e até tv e braille (para casos especificos).
+
+            tipos principais:
+                all = todos
+                print = impressão
+                screen = monitores com tela colorida (PCs, celulares e etc)
+
+            operadores logicos:
+                and = funciona como o && em Javascript, so é verdadeiro se as duas condições forem verdadeiras
+                not = funciona como o ! em Javascript, nega a condição a frente dele
+                only = impede que navegadores antigos que não suportam media query com media-features 
+                     execute CSS indesejado é uma boa prática sempre colocar ele ao criar breakpoints.
+
+            media-features principais: 
+                max-width 
+                min-width
+                min-height
+                max-height
+
+                min-* = é verdadeiro se o valor for maior ou igual
+                max-* = é verdadeiro se o valor for menor ou igual
+
+            Caso tenha interesse em uma lista completa: https://www.devmedia.com.br/utilizando-css-media-queries/27085
+        */
+
+    /*
+          Aplica o estilo apenas a telas de tamanho menor ou igual a 600 pixels
+      */
+    @media only screen and (max-width: 600px) {
+      .container {
+        background-color: rgb(54, 45, 49);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="div1">1</div>
+    <div class="div2">2</div>
+    <div class="div3">3</div>
+
+    <div class="div1">1</div>
+    <div class="div2">2</div>
+    <div class="div3">3</div>
+  </div>
+</body>
+
+</html>
