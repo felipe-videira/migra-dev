@@ -1,337 +1,66 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 
 <head>
-    <!-- nao esquece disso -->
+    <!--
+        Usado para definir o tipo de codificação do texto na página. No nosso caso precisamos usar UTF-8, 
+        pois ele permite usar caracteres latinos como o 'ç'. Esses são conhecidos como diacríticos*. 
+    -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-
-  <style>
-    body {
-        margin: 0;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-    }
-
-    .container-colunas-linhas {
-        display: grid;
-        grid-template-columns: 60px auto 60px;
-        grid-template-rows: repeat(4, 100px);
-    }
-
-    .container-colunas-linhas div {
-        border: 1px solid;
-    }
 
 
-    .container-com-fr {
-        margin-top: 10px;
-        display: grid;
-        grid-template-columns: 150px repeat(auto-fit, minmax(25px, 1fr));
-        grid-column-gap: 10px;
-        background-color: rgba(255,0,0,.7);
-        height: 200px;
-    }
+    <!--
+        O navegador normalmente redimensiona o site para caber na tela em que ele esta sendo visto, 
+        fazendo com que um site em um celular fique do mesmo jeito que ficaria no PC, o que não é bom pois para 
+        chegar a esse resultado ele diminui a escala, o que em outras palavras: reduz drasticamente o zoom e mostra 
+        o site por inteiro, de longe. E seus media queries não funcionam, porque a largura disponivel "não chegou" nas codições que você descreveu. 
 
-    .container-com-fr div  {
-        color: white;
-        font-size: 10px;
-        background-color: rgba(0,0,0,.2);
-        justify-content: center;
-        align-items: center;
-        display: flex;
-    }
-
-
-    .container-colunas-linhas-com-fr {
-        margin-top: 10px;
-        display: grid;
-        grid-template-columns: 1fr 12fr 1fr;
-        grid-template-rows: repeat(4, 1fr);
-        height: 400px;
-    }
-
-    .container-colunas-linhas-com-fr div {
-        border: 1px solid;
-    }
-
-
-    .container-colunas-linhas-com-fr-e-place-items {
-        margin-top: 10px;
-        display: grid;
-        grid-template-columns: 1fr 12fr 1fr;
-        grid-template-rows: repeat(4, 1fr);
-        height: 400px;
-        place-items: center end;
-    }
-
-    .container-colunas-linhas-com-fr-e-place-items div {
-        border: 1px solid;
-    }
-
-    .container-areas {
-        display: grid;
-        box-shadow: 1px 1px 5px #b1b1b1;
-        border-radius: 10px;
-        min-height: 250px;
-        overflow: hidden;
-        grid-template-areas:
-            'imagem imagem titulo titulo titulo'
-            'imagem imagem texto texto texto'
-            'imagem imagem botao botao botao';
-    }
-
-    .imagem {
-        grid-area: imagem;
-        display: flex;
-        align-items: center;
-        min-height: 250px;
-        justify-content: center;
-        background: #389e70;
-        color: white;
-    }
-
-    .titulo {
-        grid-area: titulo;
-        display: flex;
-        align-items: flex-end;
-        justify-content: flex-start;
-        color: rgb(22, 21, 21);
-        font-size: 20px;
-        padding: 10px;
-    }
-
-    .texto {
-        grid-area: texto;
-        display: flex;
-        align-items: flex-start;
-        justify-content: flex-start;
-        color: rgb(88, 88, 88);
-        font-size: 16px;
-        padding: 10px;
-    }
-
-    .botao {
-        grid-area: botao;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 12px;
-        padding: 10px;
-    }
-
-    .container-template {
-        display: grid;
-        grid-template:
-            'cabecalho cabecalho' 75px
-            'menu conteudo' minmax(calc(100vh - 110px), auto)
-            'rodape rodape' 35px 
-            / minmax(150px, 1fr) 4fr;
-    }
-
-    .cabecalho { 
-        grid-area: cabecalho;
-        background-color: rgb(68, 78, 173);
-        font-size: 30px;
-        color: #fff;
-        padding: 10px
-    }
-    
-    .menu { 
-        grid-area: menu; 
-        background-color: rgb(44, 179, 122);
-        font-size: 16px;
-        color: #fff;
-        padding: 10px
-    }
-
-    .menu ul {
-        list-style: none;
-        padding: 0;
-    }
-
-    .menu li {
-        margin: 10px 0;
-    }
-
-    .menu li a {
-        text-decoration: none;
-        color: #fff;
-    }
-    
-    .menu label {
-        display: none;
-        width: 50px;
-        line-height: 35px;
-        border-radius: 5px;
-        font-size: 36px;
-        font-weight: bold;
-        background: none;
-        color: #fff;
-        text-align: center;
-    }
-
-    .menu input {
-        display: none;
-    }
-
-    .menu input:checked ~ ul {
-        display: block;
-    }
-
-    .menu input:checked ~ label[aria-checked="true"] {
-        display: block;
-    }
-
-    .menu input:checked ~ label[aria-checked="false"] {
-        display: none;
-    }
-    
-    
-    .conteudo { 
-        grid-area: conteudo; 
-        background-color: rgb(236, 236, 236);
-        font-size: 18px;
-        color: rgb(51, 49, 49);
-        padding: 25px
-    }
-    
-    .rodape { 
-        grid-area: rodape; 
-        background-color: rgb(50, 51, 51);
-        font-size: 12px;
-        color: #fff;
-        padding: 10px
-    }
-
-    @media only screen and (max-width: 728px) {
-        .container-areas {
-            display: block;
-        }
-
-        .container-template {
-           display: block; 
-        }
-
-        .menu {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
+        Para resolver isso usamos a meta tag abaixo chamada viewport, que controla a area visivel da pagina, no atributo
+        'content' você pode passar instruções para o navegador de como tratar o viewport (janela de exibição). 
         
-        .menu ul {
-            display: none;
-            width: 100%;
-        }
-        
-        label[aria-checked="false"] {
-            display: block;
-        }
-    }
+        'width=device-width': Diz que a largura (width) da janela de exibição deve ser a mesma do dispositivo (device), 
+        fazendo com que os media queries funcionem normalmente.
 
-  </style>
+        'initial-scale=1.0': Diz que a escala inicial deve ser igual a 1, assim não tem o efeito de zoom diminuido.
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- 
+        A meta tag viewport deve sempre ser adicionada as páginas quando a mesma for ter um layout responsivo (que vai ser a grande maioria delas).
+        Assim com o lang="pt-BR" e o charset="utf-8" devem sempre ser adicionados quando a página for ser em português. 
+    -->
+
+    <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-    <div class="container-template">
-        <div class="cabecalho">Cabeçalho</div>
-        <div class="menu">
-            <h3>Menu</h3>
-            <input name="botao-menu" id="botao-menu" type="checkbox" />
-            <label for="botao-menu" aria-checked="false">=</label>
-            <label for="botao-menu" aria-checked="true">x</label>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="coisas">Coisas</a></li>
-                <li><a href="outras-coisas">Outras coisas</a></li>
-                <li><a href="contato">Contato</a></li>
-            </ul>
+    <div class="grid-template">
+    <div class="cabecalho">Cabeçalho</div>
+    <div class="menu">Menu</div>
+    <div class="conteudo">
+        <div class="grid-tabela">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+    
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
         </div>
-        <div class="conteudo">
-            <div class="container-colunas-linhas">
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>  
+        <div class="grid-areas">
+            <div class="imagem">Imagem</div>
+            <div class="descricao">Descricao</div>
+            <div class="autor">Autor</div>
+        </div>
         
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>  
-        
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>  
-        
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>  
-            </div>
-
-            <div class="container-com-fr">
-                <div>150px</div>
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>
-                <div>4</div>
-                <div>5</div>
-                <div>6</div>
-                <div>7</div>
-                <div>8</div>
-                <div>9</div>
-                <div>10</div>
-                <div>11</div>
-                <div>12</div>
-            </div>
-
-
-            <div class="container-colunas-linhas-com-fr">
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>  
-        
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>  
-        
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>  
-        
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>  
-            </div>
-
-
-            <div class="container-colunas-linhas-com-fr-e-place-items">
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>  
-        
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>  
-        
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>  
-        
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>  
-            </div>
-
-            <div class="container-areas">
-                <div class="imagem">imagem</div>
-                <div class="titulo">Titulo</div>
-                <div class="texto">texto</div>
-                <div class="botao">
-                    <p>Author</p>
-                    <button type="button">Aquela seta</button>
-                </div>
-            </div>
-        </div>  
-        <div class="rodape">Rodapé</div>
     </div>
- 
+    <div class="rodape">Rodape</div>
 </body>
+
 </html>
+    
+
+<!--
+    *Interessante memorizar esse nome, pois eventualmente você pode precisar, em seus projetos,  
+    pesquisar por uma função que remova diacríticos de um texto.
+-->

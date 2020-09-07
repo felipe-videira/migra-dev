@@ -1,0 +1,241 @@
+body {
+    /* 
+        Remove a margin padrão da tag body. 
+        
+        A maioria das tags tem um CSS padrão aplicado a elas pelo navegador, que as vezes é bom e outras vezes atrapalha, 
+        por isso quando estamos desenvolvendo um site por completo, que vai ter sua propria indentidade visual para cada 
+        elemento (botões, listas, campos de texto e etc) é uma boa ideia usar um conceito chamado CSS Reset, que fizemos 
+        aqui parcialmente, em que a ideia seria ter um arquivo que sobrescreve todo o CSS padrão do navegador. 
+        Um bom ponto de partida pode ser encontrado aqui:
+       
+        https://meyerweb.com/eric/tools/css/reset/
+    */
+    margin: 0;
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+.grid-tabela {
+    /* 
+        O 'display: grid' (grade) funciona semelhante ao 'display: flex', quando um elemento esta com seu display em grid 
+        ou flex ele assume o controle do posicionamento dos filhos e 'libera' algumas propriedades do CSS especificas para serem usados 
+        por ele e os filhos. 
+        
+        A ideia do grid é posicionar os elementos em um layout de grade, sendo mais indicado para layouts mais 
+        complexos como definir o layout de uma página inteira por exemplo, mas ele não substitui o flex, pois o flex ainda é a melhor opção para
+        situações mais simples como alinhar elementoS na mesma linha, e na verdade muito frequentemente você ira usar eles em conjuinto.
+        
+        Como via de regra pense assim: se for para lidar com alinhamento de items na mesma linha 
+        (que pode quebrar para outras linhas sendo responsivo ou não) use o flex, se for para alinhar elementos em multiplas linhas 
+        ou linhas e colunas ao mesmo tempo use o grid.
+    */
+    display: grid;
+
+
+    /* define as colunas (columns) do grid e seus tamanhos, nesse caso 3 colunas de 200 pixels */
+    grid-template-columns: 200px 200px 200px;
+
+    
+    /* define as linhas (rows) do grid e seus tamanhos, nesse caso 2 linhas de 100 pixels */
+    grid-template-rows: 100px 100px;
+
+
+    /* Porém você não precisa ficar repetindo o tamanho de cada linha na mão, você pode usar o repeat(nº, tamanho). */
+    grid-template-columns: repeat(4, 200px);
+    grid-template-rows: repeat(2, 100px);
+
+
+    /* 
+        Só que dessa forma o grid ainda não esta responsivo, pois o numero de linhas e colunas está fixo, 
+        se substituirmos o numero fixo pela palavra-chave 'auto-fit' (ajuste automático), o navegar vai reoganizar as linhas e colunas para sempre caberem 
+        na tela dado ao tamanho que passamos para cada item 
+    */
+    grid-template-columns: repeat(auto-fit, 200px);
+
+
+    /* 
+        Mas nesse caso o 'grid-template-rows' não surte o efeito desejado, pois ele é para linhas explicitas, 
+        como são chamadas as que são definidas por nós, então precisamos do 'grid-auto-rows' que define o tamanho de 
+        linhas implicitas, aquelas que o navegador cria. 
+    */
+    grid-auto-rows: 100px;
+
+
+    /* 
+        Digamos que você não quer que a grade quebre, mas sim que ela 
+        flexione e mantenha a estrutura descrita, você poderia usar porcentagem como abaixo 
+    */
+    grid-template-columns: repeat(4, 25%);
+
+    /* 
+        Mas esse layout talvez não fique bom no mobile nessas mesmas proporções, e ele tenha que quebrar em certo um ponto. 
+        Você não precisa de um media query para isso.Na linha abaixo o 'auto-fit' esta criando colunas com o minimo de 
+        200px e o maximo de 1 fração do espaço.
+
+        fr é uma unidade de medida relativa que calcula automaticamente as frações de espaço disponiveis, 
+        ela so pode ser usada em conjunto com o grid, pois ela usa o numero de elementos na linha para fazer a conta, 
+        por exemplo:
+
+            repeat(4, 1fr): 
+                tamanhoDaColuna = 1fr = 100% / 4 (25%)
+
+            repeat(auto-fit, minmax(10px, 1fr)) (com 3 elementos no HTML): 
+                if (100% - (3 * 10px) > 0) { // sobrou espaço
+                    tamanhoDaColuna = 1fr = 100% / 3 (33.3%)
+                } else {
+                    tamanhoDaColuna = 10px
+                } 
+    */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+
+    /* 
+        Porem o 'auto-fit' vai sempre tentar fazer as colunas preencherem o espaco disponivel 
+        ate que elas quebrem, semelhante ao flex, caso você queira que elas preservem o tamanho original após 
+        sobrar espaço use o 'auto-fill' (preenchimento automático), ele cria colunas vazias para preencher o espaço restante, inspecionado o 
+        HTML com o devtools você pode observar isso melhor 
+
+        Para usar o auto-fit e auto-fill as colunas precisam ter alguma valor absoluto, 
+        assim: repeat(auto-fit, 200px) 
+        ou assim: repeat(auto-fit, minmax(200px, 1fr)) 
+        assim não funcionaria: repeat(auto-fit, 1fr), pois ambos os valores (auto-fit, 1fr) são relativos, e não tem um ponto de partida 
+    */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+    
+    /* 
+        Define o espaçamento entre as linhas e colunas, respectivamente 
+    */
+    grid-gap: 10px 15px;
+
+
+    /* 
+        Define o alinhamento vertical e horizontal da grade, respectivamente ou apenas um valor para os dois 
+        start (padrão), end, center, space-between, space-around, space-evenly, stretch e etc 
+    */
+    place-content: center;  
+
+
+    /* 
+        Define o alinhamento vertical e horizontal dos items da grade, respectivamente ou apenas um valor para os dois  
+        stretch (padrão), start, end, center, space-between, space-around, space-evenly e etc
+    */
+    place-items: stretch end;
+}
+
+
+.grid-tabela div {
+    border: 1px solid;
+}
+
+.grid-areas {
+    display: grid;
+
+    /* 
+        O 'grid-template-areas' define as colunas e linhas atraves de areas nomeadas, as linhas sao 
+        string separadas por espaço ou quebra de linha (fica melhor de visualizar mas não é nescessario) e as 
+        colunas pelos nomes das areas separados por espaço
+    */
+    grid-template-areas: 
+        "imagem descricao"
+        "imagem autor";
+} 
+
+.grid-areas div {
+    border: 1px solid;
+}
+
+.imagem {
+    /* Define de qual area do grid esse elemento faz parte */
+    grid-area: imagem;
+}
+
+.descricao {
+    grid-area: descricao;
+}
+
+.autor {
+    grid-area: autor;
+}
+
+
+.grid-template {
+    display: grid;
+
+    /* 
+        O 'grid-template' é uma mistura dos anteriores, onde você pode definir 
+        as areas e os tamanhos das linhas e colunas, indicao para definir o layout de páginas. Apos cada declaração 
+        de area vem o tamanho daquela linha e no final apos o '/' vem o tamanho das colunas. No exemplo abaixo a linha e 
+        coluna do conteudo  são declaradas com a palavra-chave 'auto', que faz com que a largura se ajuste no espaço disponivel 
+        e altura conforme o tamanho do conteudo, esse é geralmente o comportamento desejado em um layout para uma página 
+    */
+    grid-template:
+        'cabecalho cabecalho' 75px
+        'menu conteudo' auto
+        'rodape rodape' 35px 
+        / 150px auto;
+
+
+    /* 
+        Porém dessa forma o rodapé nen sempre fica no final da página. Podemos usar o minmax para definir um tamanho 
+        minimo para o conteudo, esse tamanho minimo precisa ser o tamanho da tela menos o tamanho do cabecalho (75px) e rodape (35px),
+        podemos fazer isso usando o 'vh', uma unidade de medida que representa uma porcentagem do viewport (janela de exibição do navegador), 
+        sendo assim 100vh = 100% do tamanho da janela, usando o calc() podemos realizar calculos entre valores variaveis (%, vh) e absolutos (px), 
+        exp: calc(100% - 35px)
+    */
+    grid-template:
+        'cabecalho cabecalho' 75px
+        'menu conteudo' minmax(calc(100vh - 110px), auto)
+        'rodape rodape' 35px 
+        / 150px auto;
+
+
+    /* 
+        Desse jeito o menu vai ser sempre 150px, podemos definir as colunas em frações então para 
+        que elas se ajustem mantendo essas mesmas proporções
+    */
+    grid-template:
+        'cabecalho cabecalho' 75px
+        'menu conteudo' minmax(calc(100vh - 110px), auto)
+        'rodape rodape' 35px 
+        / 1fr 4fr;
+} 
+
+.grid-template div {
+    border: 1px solid;
+}
+
+.cabecalho { 
+    grid-area: cabecalho;
+}
+
+.menu { 
+    grid-area: menu; 
+}
+
+.rodape { 
+    grid-area: rodape; 
+}
+
+
+/* 
+    Para ajustar áreas ou o template para mobile use o media query para refazer o grid 
+*/
+@media only screen and (max-width: 728px) {
+    .grid-areas {
+        grid-template-areas: 
+            'imagem'
+            'descricao'
+            'autor';
+    }
+
+    .grid-template {
+        grid-template:
+            'cabecalho' 75px
+            'menu' 50px
+            'conteudo' minmax(calc(100vh - 110px), auto)
+            'rodape' 35px 
+            / 1fr;
+    }
+}
