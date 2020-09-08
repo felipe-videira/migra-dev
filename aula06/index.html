@@ -4,7 +4,7 @@
 <head>
     <!--
         Usado para definir o tipo de codificação do texto na página. No nosso caso precisamos usar UTF-8, 
-        pois ele permite usar caracteres latinos como o 'ç'. Esses são conhecidos como diacríticos*. 
+        pois ele permite usar caracteres latinos como o 'ç'.
     -->
     <meta charset="utf-8" />
 
@@ -13,10 +13,10 @@
         O navegador normalmente redimensiona o site para caber na tela em que ele esta sendo visto, 
         fazendo com que um site em um celular fique do mesmo jeito que ficaria no PC, o que não é bom pois para 
         chegar a esse resultado ele diminui a escala, o que em outras palavras: reduz drasticamente o zoom e mostra 
-        o site por inteiro, de longe. E seus media queries não funcionam, porque a largura disponivel "não chegou" nas codições que você descreveu. 
+        o site por inteiro, de longe. E seus media queries não funcionam, porque a largura disponível "não chegou" nas codições que você descreveu. 
 
-        Para resolver isso usamos a meta tag abaixo chamada viewport, que controla a area visivel da pagina, no atributo
-        'content' você pode passar instruções para o navegador de como tratar o viewport (janela de exibição). 
+        Para resolver isso usamos a meta tag abaixo chamada 'viewport', que controla a área visível da pagina, no atributo
+        'content' você pode passar instruções para o navegador de como tratar o 'viewport' (janela de exibição). 
         
         'width=device-width': Diz que a largura (width) da janela de exibição deve ser a mesma do dispositivo (device), 
         fazendo com que os media queries funcionem normalmente.
@@ -27,7 +27,7 @@
 
     <!-- 
         A meta tag viewport deve sempre ser adicionada as páginas quando a mesma for ter um layout responsivo (que vai ser a grande maioria delas).
-        Assim com o lang="pt-BR" e o charset="utf-8" devem sempre ser adicionados quando a página for ser em português. 
+        Assim como o lang="pt-BR" e o charset="utf-8" devem sempre ser adicionados quando a página for em português. 
     -->
 
     <link rel="stylesheet" href="styles.css" />
@@ -58,9 +58,3 @@
 </body>
 
 </html>
-    
-
-<!--
-    *Interessante memorizar esse nome, pois eventualmente você pode precisar, em seus projetos,  
-    pesquisar por uma função que remova diacríticos de um texto.
--->
