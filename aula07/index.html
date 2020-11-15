@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/style.css" />
+</head>
+
+<body>  
+    <div class="container">
+        <div>
+            <h2>Novo Produto</h2>
+            <form 
+                name="formProduto"
+                id="formProduto" 
+                action="#" 
+                class="formProduto"
+            >
+                    <!--         
+                        campo do tipo texto (type="text") obrigatório (required) e que recebe 
+                        foco automático ao entrar na página (autofocus), o foco seria o cursor já estar no 
+                        input como se tivesse sido clicado pele usuário
+                    -->
+                    <label for="pNome">Nome</label>
+                    <input type="text" id="pNome" name="pNome" required autofocus/>
+    
+                    <!--    
+                        area de texto (textarea) com 50 colunas (cols="50") e 5 linhas (rows="5") de tamanho,
+                        com um minimo de 50 caracteres (minlenght="50") e maximo de 200 (maxlength="200"), 
+                        obrigatório (required).
+    
+                        *importante fechar a tag da textarea sem espaços ou enter, pois qualquer conteudo colocado 
+                        entre a tag de abertura e fechamento sera contado com se fosse o valor atual da textarea e irá resultar em espaços 
+                        e quebras de linha indesejadas quando o usuário for digitar.
+                    -->
+                    <label for="pDescricao">Descrição</label>                                            
+                    <textarea name="pDescricao" rows="5" cols="50" minlenght="50" maxlength="200" required></textarea>
+    
+                    <!--
+                        campo de envio (type="submit"), cria um botão que
+                        executa o evento de envio do formulario (submit) ao ser clicado
+                    -->
+                    <button type="submit">Salvar</button>
+    
+                    <!--
+                        campo de limpar (type="reset"), cria um botão que apaga todos os valores 
+                        no formulario ao ser clicado
+                    -->
+                    <button type="reset">Limpar</button>
+            </form>
+        </div>
+    
+        <div id="listaProduto">
+            <h2>Produtos</h2>
+        </div>
+
+    </div>
+
+    <script src="scripts/main.js"></script>
+</body>
