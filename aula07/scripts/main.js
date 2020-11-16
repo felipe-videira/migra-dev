@@ -1,29 +1,22 @@
-//https://mockapi.io/
+/*
+    const elemento = document.querySelector(seletor) = Busca e retorna um element HMTL, pelo seletor (id, classe, nome da tag) 
+    passado como parametro, em forma de um objeto que pode ser usado para manipular a DOM*.
+    
+    elemento.addEventListener(nome do evento, função) = Adiciona uma função "ouvinte" para algum evento que possa 
+    ser disparado naquele elemento, quando for disparado a função será executada. 
 
+    Abaixo a função "onSubmitFormProduto" está sendo atribuida para ser executada quando o formulario #formProduto emitir o evento de "submit",
+    essa atribuição poderia ser feita no HTML também, mas é uma melhor pratica realizarmos isso no JS, para deixar o HTML limpo.
+*/
+// document.querySelector("#formProduto").addEventListener('submit', onSubmitFormProduto);
+
+/*
+    Busca e monta a lista de produtos ao entrar na tela. 
+*/
 buscarProdutos();
-document.getElementById("formProduto").addEventListener('submit', onSubmitFormProduto);
 
-function buscarProdutos() {
-    chamarAPI('/produtos', 'GET', function (res) {
-        montarListaProduto(res);
-    });
-}
 
-function montarListaProduto (produtos) {
-    for (let i = 0, len = produtos.length; i < len; i++) {
-        adicionarProduto(produtos[i]);
-    }
-}
-
-function adicionarProduto (produto) {
-    const paragrafo = document.createElement('p');
-
-    paragrafo.innerText = produto.nome;
-    paragrafo.classList.add("itemProduto");
-
-    document.getElementById('listaProduto').appendChild(paragrafo);
-}
-
+/* É recomendado que as funções sejam declaras na ordem de uso, para facilitar a leitura */
 function onSubmitFormProduto(event) {
     event.preventDefault();
 
@@ -43,23 +36,25 @@ function validarFormProduto() {
     const descricao = document.forms['formProduto']['pDescricao'].value;
 
     /*
-        string.trim() = limpa todos os espaços antes e depois da string: 
+        string.trim() = Limpa todos os espaços antes e depois da string: 
+
             "  texto de verdade     ".trim() === "texto de verdade"
 
-        string.replace() = substitui uma parte da string por outra:
-        "abc".replace("a", "c") === "cbc"
+        string.replace() = Substitui uma parte da string por outra:
 
-        / +/g = expressão regular (Regex), é usado para realizar condições simples e complexas em strings, muito util 
+            "abc".replace("a", "c") === "cbc"
+
+        / +/g = Expressão regular (Regex), é usado para realizar condições simples e complexas em strings, muito util 
         para validações e formatações pois reduz drasticamente o codigo nescessario, a estrutura mais basica dela seria:
 
-        /busca/forma-de-busca
+            /busca/forma-de-busca
 
-        neste caso: 
+            Neste caso: 
 
-        / +/g = selecionando espaços maiores que 1 (+) globalmente (g), ou seja em toda a string e não so o primeiro que encontrar, pois:
+            / +/g = Selecionando espaços maiores que 1 (+) globalmente (g), ou seja em toda a string e não so o primeiro que encontrar, pois:
 
-        .replace("  ", ""); === substitui apenas o primeiro espaço duplo
-        .replace(/ +/g, "") === substitui todos os espaços que são maiores que um
+            .replace("  ", "") = Substitui apenas o primeiro espaço duplo;
+            .replace(/ +/g, "") = Substitui todos os espaços que são maiores que um.
     */
     const descricaoLimpa = descricao.trim().replace(/ +/g, "");
 
@@ -77,27 +72,34 @@ function salvarProduto(produto) {
     }, produto);
 }
 
-function chamarAPI (caminho, metodo, onload, dados = null) {
-    let reqHttp;
-
-    if (window.XMLHttpRequest) {
-        // para navegadores novos
-        reqHttp = new XMLHttpRequest();
-     } else {
-        // para navegadores antigos
-        reqHttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    
-    reqHttp.onload = function () {
-        onload(JSON.parse(reqHttp.responseText));
-    };
-
-    reqHttp.onerror = function () {
-        alert(reqHttp.responseText);
-    };
-    
-    reqHttp.open(metodo, 'https://5fb083ba7edddb001646854e.mockapi.io' + caminho);
-    reqHttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-
-    reqHttp.send(dados ? JSON.stringify(dados) : null);
+function buscarProdutos() {
+    chamarAPI('/produtos', 'GET', function (res) {
+        montarListaProduto(res);
+    });
 }
+
+function montarListaProduto (produtos) {
+    for (let i = 0, len = produtos.length; i < len; i++) {
+        adicionarProduto(produtos[i]);
+    }
+}
+
+function adicionarProduto (produto) {
+    const paragrafo = document.createElement('p');
+
+    paragrafo.innerText = produto.nome;
+    paragrafo.classList.add("itemProduto");
+
+    document.querySelector('#listaProduto').appendChild(paragrafo);
+}
+
+
+
+
+/*
+    *DOM (Document Object Model) - É a representação da hierarquia dos
+    elementos na página (tags) em forma de objetos de Javascript, para que possamos consultar e 
+    alterar seus valores e atributos, e criar novos elementos dinamicamente.
+
+    document - Objeto que contém propriedades e funções a respeito do documento (página HTML)
+*/
