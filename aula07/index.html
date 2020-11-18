@@ -29,7 +29,7 @@
                         class="formProduto"
                     >
                 Geralmente o site estaria no mesmo servidor que a API em uma arquitetura monólitica, 
-                em que ambos estão no mesmo codigo e sob mesma URL, então o action seria apenas o caminho 
+                em que ambos estão no mesmo codigo e sob a mesma URL, então o action seria apenas o caminho 
                 para o arquivo que fará o processamento dos dados, exp.: '/novo_produto.php'
             -->
             <form 
@@ -45,9 +45,9 @@
                     <label for="nome">Nome</label>
 
                     <!--     
-                        Tag que cria o campo do formulario, recebe como atributo name (nome), usado para ser acessado pelo JS, e type, 
-                        que determina o tipo do campo, que definirá os possíveis valores aceitos 
-                        e sua aparência padrão (pode ser alterada via CSS). De uma olhada nos tipos aqui: 
+                        Tag que cria o campo do formulario, recebe como atributo name (nome), usado para 
+                        ser acessado pelo JS, e type, que determina o tipo do campo, que definirá os possíveis valores 
+                        aceitos e sua aparência padrão (pode ser alterada via CSS). De uma olhada nos tipos aqui: 
                         https://www.w3schools.com/html/html_form_input_types.asp
 
                         Campo do tipo texto (type="text") obrigatório (required)
@@ -60,26 +60,26 @@
                         obrigatório (required).
     
                         *importante fechar a tag da textarea sem espaços ou enter, pois qualquer conteudo colocado 
-                        entre a tag de abertura e fechamento sera contado com se fosse o valor atual da textarea e irá resultar em espaços 
+                        entre a tag de abertura e fechamento será contado com se fosse o valor atual da textarea e irá resultar em espaços 
                         e quebras de linha indesejadas quando o usuário for digitar.
                     -->
                     <label for="descricao">Descrição</label>                                            
                     <textarea id="descricao" name="descricao" rows="5" cols="50" minlenght="50" maxlength="200" required></textarea>
     
                     <!--
-                        Botão de tipo "submit", executa o evento de envio do formulario (submit) ao ser clicado
+                        Botão de tipo "submit", executa o evento de envio do formulário (submit) ao ser clicado
                     -->
                     <button type="submit">Salvar</button>
     
                     <!--
-                        Botão de tipo "reset", apaga todos os valores no formulario ao ser clicado
+                        Botão de tipo "reset", apaga todos os valores no formulário ao ser clicado
                     -->
                     <button type="reset">Limpar</button>
             </form>
         </div>
-    
+
         <!--
-            div vazia para servir como container da lista de produtos, que sera criada dinamicamente
+            Div vazia para servir como container da lista de produtos, que será criada dinamicamente
         -->
         <div id="listaProduto">
             <h2>Produtos</h2>
@@ -89,16 +89,16 @@
 
      <!-- 
         Sempre que possivel coloque a tag script no final do body, 
-        pois dessa forma seu usario não precisa esperar seu JS carregar para ver algo na tela,
-        e previne contra o JS tentar acessar um elemento que ainda não foi carregado.
+        pois dessa forma seu usuário não precisa esperar seu JS carregar para ver algo na tela,
+        e previne contra o JS tentar acessar um elemento que ainda não foi carregado e dar erro.
 
         Sempre se atente a ordem de declaração dos scripts, pois o navegador ira carregar 
         eles na mesma ordem em que as tags se encontram, então precisamos declarar primeiro o 
-        "chamarAPI.js" pois o "main.js" usa a função declarada nele, caso ele não tenho sido carregado 
-        ainda quando o "main.js" for ira ocorrer um erro, pois ele estará tentando acessar uma 
-        função ainda não declarada.
+        "chamarAPI.js" pois o "produto.js" usa a função declarada nele, caso ele não tenho sido carregado 
+        ainda quando o "produto.js" for, ira ocorrer um erro, pois ele estará tentando acessar uma 
+        função que ainda não foi declarada.
     -->
     <script src="scripts/services/chamarAPI.js"></script>
-    <script src="scripts/main.js"></script>
+    <script src="scripts/produto.js"></script>
 </body>
 </html>
