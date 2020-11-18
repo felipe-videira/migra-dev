@@ -40,8 +40,8 @@ function onSubmitFormProduto(event) {
 
     if (formValido) {
         const produto = {
-            nome: document.forms['formProduto']['pNome'].value,
-            descricao: document.forms['formProduto']['pDescricao'].value
+            nome: document.forms['formProduto']['nome'].value,
+            descricao: document.forms['formProduto']['descricao'].value
         }
 
         salvarProduto(produto);
@@ -50,7 +50,7 @@ function onSubmitFormProduto(event) {
 
 /* Valida o formulário de produtos */
 function validarFormProduto() {
-    const descricao = document.forms['formProduto']['pDescricao'].value;
+    const descricao = document.forms['formProduto']['descricao'].value;
 
     /*
         string.trim() = Limpa todos os espaços antes e depois da string: 
@@ -99,12 +99,16 @@ function buscarProdutos() {
 }
 
 /* Monta a lista de produtos a partir de um array */
-function montarListaProdutos (produtos) {
+function montarListaProdutos(produtos) {
     for (let i = 0, len = produtos.length; i < len; i++) {
-        const produto = new ItemListaProdutos(produtos[i]);
-
-        document.querySelector('#listaProduto').appendChild(produto);
+        adicionarProdutoNaLista(produtos[i]);
     }
+}
+
+function adicionarProdutoNaLista(produto) {
+    const item = new ItemListaProdutos(produto);
+
+    document.querySelector('#listaProduto').appendChild(item);
 }
 
 /* 
