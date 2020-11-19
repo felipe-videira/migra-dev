@@ -7,7 +7,14 @@
     alterar seus valores e atributos, e criar novos elementos dinamicamente.
 
     document - Objeto que contém propriedades e funções a respeito do documento (página HTML)
-    
+*/
+
+/*
+    Seleciona e armazena a lista de produto para usar depois 
+*/
+const listaProduto = document.querySelector('#listaProduto');
+
+/*
     elemento.addEventListener(nome do evento, função) = Adiciona uma função "ouvinte" para algum evento que possa 
     ser disparado naquele elemento, quando for disparado a função será executada. 
 
@@ -108,7 +115,7 @@ function montarListaProdutos(produtos) {
 function adicionarProdutoNaLista(produto) {
     const item = new ItemListaProdutos(produto);
 
-    document.querySelector('#listaProduto').appendChild(item);
+    listaProduto.appendChild(item);
 }
 
 /* 

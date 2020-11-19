@@ -11,7 +11,7 @@
     que estaria chumbado no código e atribuir significado a ele é chamada de constante
     e é geralmente declarada em letras maiúsculas com palavras separadas por '_' 
 */
-const API_URL = 'https://5fb083ba7edddb001646854e.mockapi.io';
+const API_URL = 'https://5fb5b78836e2fa00166a48cc.mockapi.io';
 
 
 /*
