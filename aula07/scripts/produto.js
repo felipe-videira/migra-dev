@@ -9,10 +9,6 @@
     document - Objeto que contém propriedades e funções a respeito do documento (página HTML)
 */
 
-/*
-    Seleciona e armazena a lista de produto para usar depois 
-*/
-const listaProduto = document.querySelector('#listaProduto');
 
 /*
     elemento.addEventListener(nome do evento, função) = Adiciona uma função "ouvinte" para algum evento que possa 
@@ -29,6 +25,12 @@ document.querySelector("#formProduto").addEventListener('submit', onSubmitFormPr
 buscarProdutos();
 
 
+/*
+    Seleciona e armazena a lista de produto para usar depois 
+*/
+const listaProduto = document.querySelector('#listaProduto');
+
+
 /* 
     É recomendado que as funções sejam declaras na ordem de uso, para facilitar a leitura, 
     e declaradas de forma que cada uma tenha apenas 1 propósito para facilitar a manutenção, 
@@ -43,52 +45,15 @@ function onSubmitFormProduto(event) {
     */
     event.preventDefault();
 
-    const formValido = validarFormProduto();
 
-    if (formValido) {
-        const produto = {
-            nome: document.forms['formProduto']['nome'].value,
-            descricao: document.forms['formProduto']['descricao'].value
-        }
-
-        salvarProduto(produto);
-    }
-}
-
-/* Valida o formulário de produtos */
-function validarFormProduto() {
-    const descricao = document.forms['formProduto']['descricao'].value;
-
-    /*
-        string.trim() = Limpa todos os espaços antes e depois da string: 
-
-            "  texto de verdade     ".trim() === "texto de verdade"
-
-        string.replace() = Substitui uma parte da string por outra:
-
-            "abc".replace("a", "c") === "cbc"
-
-        / +/g = Expressão regular (Regex), é usado para realizar condições simples e complexas em strings, muito util 
-        para validações e formatações pois reduz drasticamente o código necessário, a estrutura mais basica dela seria:
-
-            /busca/forma de busca
-
-            Neste caso: 
-
-            / +/g = Selecionando espaços maiores que 1 (+) globalmente (g), ou seja em toda a string e não so o primeiro que encontrar, pois:
-
-            .replace("  ", "") = Substitui apenas o primeiro espaço duplo;
-            .replace(/ +/g, "") = Substitui todos os espaços que são maiores que um.
-    */
-    const descricaoLimpa = descricao.trim().replace(/ +/g, "");
-
-    /* se depois da limpeza não sobrar nada então o usuário não digitou nada */
-    if (descricaoLimpa.length === 0) {
-        return false;
+    const produto = {
+        nome: document.forms['formProduto']['nome'].value,
+        descricao: document.forms['formProduto']['descricao'].value
     }
 
-    return true;
+    salvarProduto(produto);
 }
+
 
 /* Envia os dados do produto para o servidor para serem persistidos */
 function salvarProduto(produto) {
@@ -112,30 +77,12 @@ function montarListaProdutos(produtos) {
     }
 }
 
+/* Cria e adiciona um item na lista de produtos */
 function adicionarProdutoNaLista(produto) {
-    const item = new ItemListaProdutos(produto);
-
-    listaProduto.appendChild(item);
-}
-
-/* 
-    Componente do item da lista de produtos. 
-    
-    Um componente é um pedaço de código reutilizável, que serve a um propósito de forma genérica
-    e desacoplada, podendo ser adicionado ou removido de um pai sem afetar o funcionamento do mesmo ou de seus outros componentes, 
-    e no objetivo de ser genérico pode ter seu resultado alterado pelos valores passados para ele. 
-
-    Em front end o termo componente geralmente é usado para se referir a componentes de interface, que são classes ou funções 
-    com nomes com letra maiúscula e que são invocadas com a palavra-chave 'new', que retonam um elemento HMTL para ser adicionado ao documento.
-    
-    Neste caso ItemListaProdutos é um componente de interface que cria a visualização de um item da lista de produtos, 
-    recebe como parâmetro os dados do produto, e seu resultado final é variavél pelo nome do produto.
-*/
-function ItemListaProdutos (produto) {
     const item = document.createElement('p');
 
     item.innerText = produto.nome;
     item.classList.add("itemProduto");
 
-    return item;
+    listaProduto.appendChild(item);
 }
